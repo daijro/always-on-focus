@@ -22,7 +22,7 @@ Always on focus is a lightweight userscript that prevents websites from knowing 
 
 - Disables the `window.onblur()` event and and sets `window.hasFocus()` and `window.onFocus()` to always true ([Ex.](https://www.codingwithjesse.com/demo/2007-05-16-detect-browser-window-focus/))
 
-- Removes the `visibilitychange`, `webkitvisibilitychange`, and `blur` event listeners ([Ex.](http://daniemon.com/tech/webapps/page-visibility/))
+- Removes the `visibilitychange` and `blur` event listeners ([Ex.](http://daniemon.com/tech/webapps/page-visibility/))
 
 
 #### Example:
