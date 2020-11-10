@@ -2,7 +2,7 @@
 // @name          Always on focus
 // @namespace     https://github.com/daijro/always-on-focus
 // @author        daijro
-// @version       1.0
+// @version       1.1
 // @description   Trick websites into thinking the tab is always on focus
 // @include       *
 // @run-at        document-start
@@ -22,7 +22,7 @@ Object.defineProperty(document, 'visibilityState', { get: function () { return "
 
 unsafeWindow.document.onvisibilitychange = undefined;
 
-for (event_name of ["visibilitychange", "webkitvisibilitychange", "blur"]) {
+for (event_name of ["visibilitychange", "webkitvisibilitychange", "blur", "mozvisibilitychange", "msvisibilitychange"]) {
   window.addEventListener(event_name, function(event) {
         event.stopImmediatePropagation();
     }, true);
