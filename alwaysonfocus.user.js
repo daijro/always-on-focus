@@ -3,7 +3,7 @@
 // @namespace     https://github.com/daijro/always-on-focus
 // @author        daijro
 // @version       1.1
-// @description   Trick websites into thinking the tab is always on focus
+// @description   Prevents websites from knowing that you switched tabs or unfocused the window
 // @include       *
 // @run-at        document-start
 // ==/UserScript==
