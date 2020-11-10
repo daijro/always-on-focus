@@ -4,8 +4,8 @@
 // @author        daijro
 // @version       1.0
 // @description   Trick websites into thinking the tab is always on focus
-// @include *
-// @run-at       document-start
+// @include       *
+// @run-at        document-start
 // ==/UserScript==
 
 unsafeWindow.onblur = null;
