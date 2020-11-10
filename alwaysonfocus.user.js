@@ -2,7 +2,7 @@
 // @name          Always on focus
 // @namespace     https://github.com/daijro/always-on-focus
 // @author        daijro
-// @version       1.0.0
+// @version       1.0
 // @description   Trick websites into thinking the tab is always on focus
 // @include *
 // @run-at       document-start
