@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name          Always on focus
-// @namespace     daijro
+// @namespace     https://github.com/daijro/always-on-focus
+// @author        daijro
 // @description   Trick websites into thinking the tab is always on focus
 // @include *
 // @run-at       document-start
