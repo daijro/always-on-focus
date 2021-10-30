@@ -22,7 +22,7 @@ Object.defineProperty(document, 'visibilityState', { get: function () { return "
 
 unsafeWindow.document.onvisibilitychange = undefined;
 
-for (event_name of ["visibilitychange", "webkitvisibilitychange", "blur", "mozvisibilitychange", "msvisibilitychange"]) {
+for (const event_name of ["visibilitychange", "webkitvisibilitychange", "blur", "mozvisibilitychange", "msvisibilitychange"]) {
   window.addEventListener(event_name, function(event) {
         event.stopImmediatePropagation();
     }, true);
