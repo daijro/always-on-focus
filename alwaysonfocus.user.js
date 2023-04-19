@@ -2,31 +2,52 @@
 // @name          Always on focus
 // @namespace     https://github.com/daijro/always-on-focus
 // @author        daijro
-// @version       1.1
+// @version       1.2
 // @description   Prevents websites from knowing that you switched tabs or unfocused the window
 // @include       *
 // @run-at        document-start
 // ==/UserScript==
 
+
 unsafeWindow.onblur = null;
 unsafeWindow.blurred = false;
 
-unsafeWindow.document.hasFocus = function () {return true;};
-unsafeWindow.window.onFocus = function () {return true;};
+unsafeWindow.document.hasFocus = () => true;
+unsafeWindow.window.onFocus = () => true;
 
-Object.defineProperty(document, "hidden", { value : false});
-Object.defineProperty(document, "mozHidden", { value : false});
-Object.defineProperty(document, "msHidden", { value : false});
-Object.defineProperty(document, "webkitHidden", { value : false});
-Object.defineProperty(document, 'visibilityState', { get: function () { return "visible"; } });
+// kill dom property names
+[
+    "hidden",
+    "mozHidden",
+    "msHidden",
+    "webkitHidden"
+].forEach(prop_name => {
+    Object.defineProperty(document, prop_name, {value: false});
+})
+
+Object.defineProperty(document, "visibilityState", {get: () => "visible", value: "visible"});
+Object.defineProperty(document, "webkitVisibilityState", {get: () => "visible", value: "visible"});
 
 unsafeWindow.document.onvisibilitychange = undefined;
 
-for (const event_name of ["visibilitychange", "webkitvisibilitychange", "blur", "mozvisibilitychange", "msvisibilitychange"]) {
-    window.addEventListener(event_name, function (event) {
-        if (event.type === 'blur' && event.target instanceof HTMLInputElement) {
-            return;
-        }
-        event.stopImmediatePropagation();
-    }, true);
+
+var event_handler = (event) => {
+    if (event.type === 'blur' && event.target instanceof HTMLInputElement) {
+        return // exclude input elements
+    }
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
 }
+
+// kill event listeners
+[
+    "visibilitychange",
+    "webkitvisibilitychange",
+    "blur",
+    "mozvisibilitychange",
+    "msvisibilitychange"
+].forEach(event_name => {
+    window.addEventListener(event_name, event_handler, true);
+    document.addEventListener(event_name, event_handler, true);
+})
