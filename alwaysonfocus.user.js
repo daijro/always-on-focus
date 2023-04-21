@@ -2,7 +2,7 @@
 // @name          Always on focus
 // @namespace     https://github.com/daijro/always-on-focus
 // @author        daijro
-// @version       1.2
+// @version       1.3
 // @description   Prevents websites from knowing that you switched tabs or unfocused the window
 // @include       *
 // @run-at        document-start
@@ -32,7 +32,7 @@ unsafeWindow.document.onvisibilitychange = undefined;
 
 
 var event_handler = (event) => {
-    if (event.type === 'blur' && event.target instanceof HTMLInputElement) {
+    if (["blur", "mouseleave", "mouseout"].includes(event.type) && event.target instanceof HTMLInputElement) {
         return // exclude input elements
     }
     event.preventDefault();
@@ -45,6 +45,9 @@ var event_handler = (event) => {
     "visibilitychange",
     "webkitvisibilitychange",
     "blur",
+    "hasFocus",
+    "mouseleave",
+    "mouseout",
     "mozvisibilitychange",
     "msvisibilitychange"
 ].forEach(event_name => {
