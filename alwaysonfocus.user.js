@@ -2,7 +2,7 @@
 // @name          Always on focus
 // @namespace     https://github.com/daijro/always-on-focus
 // @author        daijro
-// @version       1.4
+// @version       1.5
 // @description   Prevents websites from knowing that you switched tabs or unfocused the window
 // @include       *
 // @updateURL     https://github.com/daijro/always-on-focus/raw/main/alwaysonfocus.user.js
@@ -27,8 +27,8 @@ unsafeWindow.window.onFocus = () => true;
     Object.defineProperty(document, prop_name, {value: false});
 })
 
-Object.defineProperty(document, "visibilityState", {get: () => "visible", value: "visible"});
-Object.defineProperty(document, "webkitVisibilityState", {get: () => "visible", value: "visible"});
+Object.defineProperty(document, "visibilityState", {get: () => "visible"});
+Object.defineProperty(document, "webkitVisibilityState", {get: () => "visible"});
 
 unsafeWindow.document.onvisibilitychange = undefined;
 
