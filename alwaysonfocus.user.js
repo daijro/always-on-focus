@@ -2,7 +2,7 @@
 // @name          Always on focus
 // @namespace     https://github.com/daijro/always-on-focus
 // @author        daijro
-// @version       1.5.1
+// @version       1.5.2
 // @description   Prevents websites from knowing that you switched tabs or unfocused the window
 // @include       *
 // @updateURL     https://github.com/daijro/always-on-focus/raw/main/alwaysonfocus.user.js
@@ -53,14 +53,14 @@ const hoverBlacklist = [
 
 var event_handler = (event) => {
     // if the event is blur, and the target is an whitelisted type, allow it
-    if (event.type === 'blur'
-        && blurWhitelist.some(type => event.target instanceof type)
-        || event.target.classList.contains('ql-editor')) { // quill js fix
+    if (event.type === 'blur' &&
+        ((blurWhitelist.some(type => event.target instanceof type) ||
+            event.target.classList.contains('ql-editor')))) { // quill js fix
         return;
     }
     // if the event is mouseleave or mouseout, and the target is an blacklisted type, block it
-    if (['mouseleave', 'mouseout'].includes(event.type)
-        && !hoverBlacklist.some(type => event.target instanceof type)) {
+    if (['mouseleave', 'mouseout'].includes(event.type) &&
+        !hoverBlacklist.some(type => event.target instanceof type)) {
         return;
     }
     event.preventDefault();
